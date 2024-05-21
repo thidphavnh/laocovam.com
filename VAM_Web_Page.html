@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAM</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        header {
+            background-color: #007cc3;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid #005b8e;
+            color: #fff;
+        }
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .container {
+            max-width:1060px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-top: 0;
+        }
+        p {
+            line-height: 1.6;
+            color: #555;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #007cc3;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 30%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="button"] {
+            padding: 10px 20px;
+            background-color: #005b8e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #004871;
+        }
+        /* Hide the about and contact content by default */
+        .hidden {
+            display: none;
+        }
+        .hero-content {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .hero-content img {
+            max-width: 350px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .image-name {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .sub-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            cursor: pointer;
+            color: blue;
+            font-weight: bold;
+        }
+
+        .sub-title-content {
+            display: none;
+            margin-left: 20px;
+        }
+
+        .sub-title-content.active {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Vulnerability Analysis and Mapping Web Page</h1>
+        <nav>
+            <a href="https://wfp.sharepoint.com/sites/LAOITTeam/SitePages/RAM.aspx">Home</a>
+            <a href="#" onclick="toggleContent('food_security_monitoring')">Food Security Monitoring</a>
+            <a href="#" onclick="toggleContent('market_price_monitoring')">Market Price Monitoring</a>
+            <a href="#" onclick="toggleContent('vulnerability_assessment')">Vulnerability Assessment</a>
+            <a href="#" onclick="toggleContent('research')">Research</a>
+            <a href="#" onclick="toggleContent('operation')">Operation</a>
+            <a href="#" onclick="toggleContent('others')">Others</a>
+            <a href="#" onclick="toggleContent('contact')">Contact</a>
+        </nav>
+        <form id="searchForm" action="#" method="get">
+            <input type="text" id="searchInput" name="search" placeholder="Search...">
+            <input type="button" value="Search" onclick="searchContent()">
+        </form>
+    </header>
+    <div class="container">
+        <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/24b49c85-c883-4dbe-98c4-a55f09370b44.png" alt="WFP Image" width="800px" height="300px">
+        <p><strong>What is VAM?</strong></p>
+        <p>VAM provides food security, nutrition and vulnerability analysis to help design programmes, prioritize resources, choose the optimal transfer modalities, and target and prioritize those most in need.</p>
+        <p>VAM provides data and information for WFP programmes by answering critical questions such as:</p>
+        <ul>
+            <li>Who is food insecure or vulnerable?</li>
+            <li>How many are they?</li>
+            <li>Where do they live?</li>
+            <li>Why are they food insecure or vulnerable?</li>
+            <li>How is the situation likely to evolve and what are the risks threatening them?</li>
+            <li>What should be done to save their lives and livelihoods?</li>
+        </ul>
+        <p>Food security analysis provides information to:</p>
+        <ul>
+             <li>Identify the most appropriate type and scale of intervention;</li>
+             <li>Identify the most food insecure people to ensure the most effective targeting;</li>
+             <li>Ensure the most efficient use of humanitarian resources, by allocating funding based on needs.</li>
+        </ul>
+        <div id="about-content" class="hidden">
+            <h2>About Us</h2>
+            <p>This website is dedicated to providing information about our vulnerability analysis and mapping initiatives.</p>
+            <p>Feel free to explore and learn more about how we work towards fighting hunger worldwide.</p>
+        </div>
+        <div id="contact-content" class="hidden">
+            <h2>Contact Us</h2>
+            <p><strong>If you have any questions or inquiries, please feel free to contact us using the information below:</strong></p>
+            <ul>
+                 <p><strong>Rumbidzayi Machiridza</strong><p>
+                 <p>Head of Research, Assessment and Monitoring (RAM)</p>
+                 <p>rumbidzayi.machiridza@wfp.org</p>
+            </ul>
+
+            <ul>
+                <p><strong>Manithaphone Mahaxay</strong></p>
+                <p>Vulnerability Analysis and Mapping (VAM) Officer</p>
+                </p>manithaphone.mahaxay@wfp.org</strong></p>
+           </ul>
+
+        </div>
+        <div id="food_security_monitoring-content" class="hidden">
+            <h2>Our Food Security Monitoring</h2>
+            <h3 class="sub-title" onclick="toggleSubContent('food_security_monitoring')">mVAM</h3>
+            <div class="hero-content">
+                <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/1%20WFP%20Lao%20PDR%20mVAM%201st%20Round%20-%20Sep2022.pdf" target="_blank">
+                    <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM01.PNG" alt="Food Security" width="350px" height="350px">
+                    <div class="image-name">01 WFP Lao PDR mVAM 1st Round - Sep2022</div>
+                </a>
+            </div>
+            <div class="hero-content">
+                <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/2%20WFP%20Lao%20PDR%20mVAM%202nd%20Round%20-%20Oct2022.pdf" target="_blank">
+                    <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM02.PNG" alt="Food Security" width="350px" height="350px">
+                    <div class="image-name">02 WFP Lao PDR mVAM 2nd Round - Oct2022 </div> <!-- Name of the second image -->
+                </a>
+            </div>
+            <div class="hero-content">
+                <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/3%20WFP%20Lao%20PDR%20mVAM%203rd%20Round%20-%20Nov2022.pdf" target="_blank">
+                    <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM03.PNG" alt="Food Security" width="350px" height="350px">
+                    <div class="image-name">03 WFP Lao PDR mVAM 3rd Round - Nov2022 </div> <!-- Name of the third image -->
+                </a>
+            </div>
+            <div class="hero-content">
+                <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/4%20WFP%20Lao%20PDR%20mVAM%204th%20Round%20-%20Dec2022-Jan2023.pdf" target="_blank">
+                    <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM04.PNG" alt="Food Security" width="350px" height="350px">
+                    <div class="image-name">04 WFP Lao PDR mVAM 4th Round - Dec2022-Jan2023 </div> <!-- Name of the fourth image -->
+                </a>
+            </div>
+            <div class="hero-content">
+                <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/5%20WFP%20Lao%20PDR%20mVAM%205th%20Round%20-%20Jan-Feb2023.pdf" target="_blank">
+                    <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM05.PNG" alt="Food Security" width="350px" height="350px">
+                    <div class="image-name">05 WFP Lao PDR mVAM 5th Round - Jan-Feb2023</div> <!-- Name of the fifth image -->
+                </a>
+            </div>
+            <div class="hero-content">
+                <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/6%20WFP%20Lao%20PDR%20mVAM%206th%20Round%20-%20Feb-Mar2023.pdf" target="_blank">
+                     <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM06.PNG" alt="Food Security" width="350px" height="350px">
+                     <div class="image-name">06 WFP Lao PDR mVAM 6th Round - Feb-Mar2023</div> <!-- Name of the fourth image -->
+                 </a>
+            </div>
+            <div class="hero-content">
+                 <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/7%20WFP%20Lao%20PDR%20mVAM%207th%20Round%20-%20Mar-Apr2023.pdf" target="_blank">
+                      <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM07.PNG" alt="Food Security" width="350px" height="350px">
+                      <div class="image-name">07 WFP Lao PDR mVAM 7th Round - Mar-Apr2023</div> <!-- Name of the fourth image -->
+                 </a>
+            </div>
+            <div class="hero-content">
+                 <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/8%20WFP%20Lao%20PDR%20mVAM%208th%20Round%20-%20Apr-May2023.pdf" target="_blank">
+                       <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM08.PNG" alt="Food Security" width="350px" height="350px">
+                       <div class="image-name">08 WFP Lao PDR mVAM 8th Round - Apr-May2023</div> <!-- Name of the fourth image -->
+                 </a>
+             </div>
+                    <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/9%20WFP%20Lao%20PDR%20mVAM%209th%20Round%20-%20May-Jun2023.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM09.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">09 WFP Lao PDR mVAM 9th Round - May-Jun2023</div> <!-- Name of the fourth image -->
+                        </a>
+                    </div>
+                    <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/11%20WFP%20Lao%20PDR%20mVAM%2011th%20Round%20-%20Sep2023.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM10.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">10 WFP Lao PDR mVAM 10th Round - Jun-Jul2023</div> <!-- Name of the fourth image -->
+                        </a>
+                    </div>
+                    <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/10%20WFP%20Lao%20PDR%20mVAM%2010th%20Round%20-%20Jun-Jul2023.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM11.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">11 WFP Lao PDR mVAM 11th Round - Sep2023</div> <!-- Name of the fourth image -->
+                        </a>
+                    </div>
+                    <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/12%20WFP%20Lao%20PDR%20mVAM%2012th%20Round%20-%20Nov%202023.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM12.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">12 WFP Lao PDR mVAM 12th Round - Nov 2023</div> <!-- Name of the fourth image -->
+                        </a>
+                    </div>
+                    <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/LAOITTeam/Shared%20Documents/Documents/VAM/FS_monitoring/mVAM/_mVAM_final_report_pdf/13%20WFP%20Lao%20PDR%20mVAM%2013th%20Round%20-%20Dec2023.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/mVAM13.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">13 WFP Lao PDR mVAM 13th Round - Dec2023</div> <!-- Name of the fourth image -->
+                        </a>
+                    </div>
+        <h3 class="sub-title" onclick="toggleSubContent('food_security_monitoring')">CFSAM</h3>
+                    <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/CFSAM/FAO-WFP%20CROP%20AND%20FOOD%20SECURITY%20%20ASSESSMENT%20MISSION%20(CFSAM)%20TO%20%20THE%20LAO%20PEOPLE%E2%80%99S%20DEMOCRATIC%20REPUBLIC%202019.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/CFSAM_2019.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">FAO-WFP CROP AND FOOD SECURITY  ASSESSMENT MISSION (CFSAM) TO  THE LAO PEOPLE’S DEMOCRATIC REPUBLIC 2019</div> <!-- Name of the fourth image -->
+                        </a>
+                    </div>
+                    <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/CFSAM/FAO-WFP%20CROP%20AND%20FOOD%20SECURITY%20ASSESSMENT%20MISSION%20(CFSAM)%20TO%20THE%20LAO%20PEOPLE%E2%80%99S%20DEMOCRATIC%20REPUBLIC%202022.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/CFSAM_2022.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">FAO-WFP CROP AND FOOD SECURITY ASSESSMENT MISSION (CFSAM) TO THE LAO PEOPLE’S DEMOCRATIC REPUBLIC 2022</div> <!-- Name of the fourth image -->
+                        </a>
+                    </div>
+        <h3 class="sub-title" onclick="toggleSubContent('food_security_monitoring')">Fill The Nutrition Gap</h3>
+                   <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/SO2/Fill%20the%20Nutrition%20Gap.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Fill%20the%20Nutrient%20Gap%202022.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">Fill The Nutrition Gap2022</div> <!-- Name of the fourth image -->
+                        </a>
+                    </div>
+        </div>
+
+     <div id="market_price_monitoring-content" class="hidden">
+    <h2>Our Dashboard Market Price monitoring</h2>
+    
+    <!-- Market Price Monitor in WFP Area -->
+   
+
+    <!-- Price Dashboard -->
+    <h3 class="sub-title" onclick="toggleSubContent('food_security_monitoring')">Price</h3>
+    <div class='tableauPlaceholder' id='viz1715163160714' style='position: relative'>
+        <noscript>
+            <a href='#'>
+                <img alt=' ' src='https://public.tableau.com/static/images/Pr/Price_17151631142850/ExchangRate2/1_rss.png' style='border: none' />
+            </a>
+        </noscript>
+        <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='Price_17151631142850&#47;ExchangRate2' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='static_image' value='https://public.tableau.com/static/images/Pr/Price_17151631142850/ExchangRate2/1.png' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+            <param name='language' value='en-US' />
+            <param name='filter' value='publish=yes' />
+        </object>
+    </div>
+    <script type='text/javascript'>
+        var divElement = document.getElementById('viz1715163160714');
+        var vizElement = divElement.getElementsByTagName('object')[0];
+        if (divElement.offsetWidth > 800) {
+            vizElement.style.width='1000px';
+            vizElement.style.height='827px';
+        } else if (divElement.offsetWidth > 500) {
+            vizElement.style.width='1000px';
+            vizElement.style.height='827px';
+        } else {
+            vizElement.style.width='100%';
+            vizElement.style.height='1477px';
+        }
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+    <h3 class="sub-title" onclick="toggleSubContent('food_security_monitoring')">Market Price DataViz MoiC</h3>
+    <iframe src="https://dataviz.vam.wfp.org/asia-and-the-pacific/lao-people%27s-democratic-republic/economic/prices" width="100%" height="600"></iframe>
+    <!-- End of dashboard embed code -->
+</div>
+
+        <div id="vulnerability_assessment-content" class="hidden">
+        <h2>Our Assessment</h2>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Assessment/LAO_CLEAR--English-version-FINAL-1-9-2016-standard.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Assessment/CLEAR_2016.PNG" alt="Food Security" width="340px" height="350px">
+                            <div class="image-name">Consolidated Livelihood Exercise for Analyzing Resilience 2016</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Assessment/CRA%20Feb2019%20Resized%20v26Feb2019.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Assessment/CRA_2019_1.PNG" alt="Food Security" width="340px" height="350px">
+                            <div class="image-name">Community Readiness Assessment (CRA) to Take-over School Lunch Preliminary Result 2019</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Assessment/Lao-PDR-MEB-2022-CWG.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Assessment/Lao_PDR_MEB_2022_1.PNG" alt="Food Security" width="340px" height="350px">
+                            <div class="image-name">Lao-PDR-MEB-2022</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+        </div>
+
+        <div id="research-content" class="hidden">
+        <h2>Our Research</h2>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Resarch/CCA2_final_report_Apr2022.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Research/CCA_2022_1.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">CCA final report Apr 2022</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Resarch/Cost-Benefit%20Analysis%202018.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Research/CBA_2018_1.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">Cost-Benefit Analysis 2018</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+        </div>
+
+        <div id="others-content" class="hidden">
+        <h2>Our Research or Reports</h2>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO1/WFP_SnackConsumption_LandscapeAnalysis_final%20repor%202022.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/wfp_snackConsumption.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">WFP SnackConsumption LandscapeAnalysis final report 2022</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO2/Testing%20the%20Acceptability%20and%20Organoleptic%20Qualities%20of%20Multiple%20Micronutrient%20Fortified%20Rice%20in%20School%20Children,%20LAO%20PDR.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/Testing_the_Accept2023.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">TESTING THE ACCEPTABILITY AND ORGANOLEPTIC QUALITIES OF MULTIPLE MICRONUTRIENT FORTIFIED RICE IN SCHOOL CHILDREN, LAO PDR 2023</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO2/WFP%20Laos%20-%20Cash%20Distributions%20for%20Household%20Nutrition%20-%202022.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/Cash_distribution_2022.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">WFP Laos - Cash Distributions for Household Nutrition - 2022</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO2/WFP%202020%20Houshold%20Impact%20Survey.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/Farmer_Nutrition_2020.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">WFP Houshold Impact Survey 2020</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO2/AFN%20Annual%20survey%20Report%2020042021%20final%20a.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/AFN_2021.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">AFN Annual survey Report Final 2021</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO2/AFN%20MAF%20Project%20Completion%20Report%20v2.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/AFN_2021.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">AFN MAF Project Completion Report 2023</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO2/AFN%20MAF%20Project%20Completion%20Report%20v2.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/AFN_2021.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">AFN MAF Project Completion Report 2023</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO2/Report_AFN%20Gender%20Assessment-5%20Sep%202023.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/AFN_MAF_Gender_2023.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">Report_AFN Gender Assessment-5 Sep 2023</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO3/Guidance%20to%20Develop%20Strategy%20and%20Action%20Plan%20on%20Multi-Hazard%20Impact-based%20Forecasting%20and%20Warning%20(IbFW)%20in%20Lao%20PDR.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/Guidance_to_Develop_Straigegies.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">Guidance to Develop Strategy and Action Plan on Multi-Hazard Impact-based Forecasting and Warning (IbFW) in Lao PDR 2022</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/Operational_Cash_Fes_2023.PNG" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/Guidance_to_Develop_Straigegies.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">LTS_WFP_Operational Cash Feasibility Study for Anticipatory Cash Transfers in Luang Prabang and Savannakhet_2023</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO3/WFP_2021_%20Scoping%20Study%20on%20Digital%20cash%20transfers%20in%20Lao%20PDR.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/Operational_Cash_Fes_2023.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">WFP Scoping Study on Digital cash transfers in Lao PDR 2021</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO3/Report%20on%20SRSP%20Capacity%20Assessment_December2021.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/piloting_of_the_shock.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">Report on SRSP Capacity Assessment December 2021</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/SO3/WFP_RIMES_Development%20of%20Drought%20Threshold%20and%20Triggering%20Mechanism%20in%20Lao%20PDR%20and%20Cambodia_2022.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/Development_of_Drought.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">WFP_RIMES_Development of Drought Threshold and Triggering Mechanism in Lao PDR and Cambodia 2022</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/LSIS/LSIS%20III-MICS%202023%20Key%20Indicators%20Report%20EN%2025%2001%202024%20Final.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/LSIS_2024_Eng.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">LSIS III-MICS 2023 Key Indicators Report EN 25 01 2024 Final</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+            <div class="hero-content">
+                        <a href="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/Others/LSIS/LSIS%20III-MICS%202023%20Key%20Indicators%20Report%20LA%2025%2001%202024%20Final.pdf" target="_blank">
+                            <img src="https://wfp.sharepoint.com/sites/RAM564/Shared%20Documents/General/Evidence/image/Other/LSIS_2024_Lao_1.PNG" alt="Food Security" width="350px" height="350px">
+                            <div class="image-name">LSIS III-MICS 2023 Key Indicators Report LA 25 01 2024 Final</div> <!-- Name of the fourth image -->
+                        </a>
+            </div>
+        </div>
+
+        <div id="operation-content" class="hidden">
+        <h2>Our Operation</h2>
+        <p><strong>Programme Operation</strong></p>
+
+        </div>
+ </div>
+    <footer>
+        <p>&copy; 2024 Vulnerability Analysis and Mapping Web Page for WFP Lao. All rights reserved.</p>
+    </footer>
+ <script>
+    function toggleContent(section) {
+        var sections = ['about', 'contact', 'food_security_monitoring', 'market_price_monitoring', 'vulnerability_assessment', 'research', 'others', 'operation'];
+        sections.forEach(function(sectionName) {
+            var contentElement = document.getElementById(sectionName + '-content');
+            if (section === sectionName) {
+                if (contentElement.classList.contains('hidden')) {
+                    contentElement.classList.remove('hidden');
+                } else {
+                    contentElement.classList.add('hidden');
+                }
+            } else {
+                contentElement.classList.add('hidden');
+            }
+        });
+    }
+
+    function toggleSubContent(section) {
+        var subContent = document.getElementById(section + "-sub-content");
+        subContent.classList.toggle('hidden');
+    }
+
+    function searchContent() {
+        var searchText = document.getElementById("searchInput").value.toLowerCase();
+        if (searchText.includes('mvam')) {
+            toggleContent('food_security_monitoring');
+        }
+    }
+ </script>
+</body>
+</html>
